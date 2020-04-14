@@ -23,9 +23,28 @@ set hlsearch
 set splitbelow
 set splitright
 
-au BufReadPost,BufNewFile Makefile setlocal noexpandtab list
 
-au FileType vim setlocal nonumber norelativenumber
+augroup filetype_makefile
+    autocmd!
+    autocmd BufReadPost,BufNewFile Makefile setlocal noexpandtab list
+augroup END
+
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal nonumber norelativenumber
+augroup END
+
+augroup javascript
+    autocmd!
+    autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+augroup END
+
+augroup c
+    autocmd!
+    autocmd FileType c :iabbrev <buffer> iff if ()<left>
+    autocmd FileType c :iabbrev <buffer> r; return;<left>
+    autocmd FileType c :iabbrev <buffer> #i #include<><left>
+augroup END
 
 let mapleader = ','
 
@@ -33,9 +52,11 @@ let mapleader = ','
 nnoremap <leader>rc :vsplit $MYVIMRC<cr>
 nnoremap <leader>src :source $MYVIMRC<cr>
 
+" escape is to far
 inoremap jk <esc>
 inoremap <esc> <esc>:echo "no more esc"<cr>i
 
+" commonly used shortcuts
 nnoremap <leader>t :Explore<cr>
 nnoremap <leader>w :%s/\s\+$//e<cr>:wa<cr>
 nnoremap <leader>q :%s/\s\+$//e<cr>:wq<cr>
@@ -55,8 +76,6 @@ nnoremap <c-w>h :leftabove vsplit<cr>
 nnoremap <c-w>j :split<cr>
 nnoremap <c-w>k :leftabove split<cr>
 nnoremap <c-w>l :vsplit<cr>
-
-
 
 iabbrev ccopy Copyright 2020 George Olson, all rights reserved
 
