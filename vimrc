@@ -17,6 +17,9 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 filetype indent on
+
+set ignorecase
+set smartcase
 set incsearch
 set hlsearch
 
@@ -32,11 +35,16 @@ augroup END
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal nonumber norelativenumber
+    nnoremap <c-/> mm^i" <esc>`m
 augroup END
 
 augroup javascript
     autocmd!
     autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+    onoremap fp :normal! /\(function.*(.*)\|(.*) *=>\)<cr>t)vF(
+    " nnoremap <leader>aFp /(function.*(.*)|(.*) *=>)/<cr>f)F(ci(
+    " nnoremap <leader>afp /\(function.*(.*)\|(.*).*=>\)<cr>f)F(ci(
+    " nnoremap <leader>aFp ?\(function.*(.*)\|(.*).*=>\)<cr>f)F(ci(
 augroup END
 
 augroup c
@@ -76,6 +84,7 @@ nnoremap <c-w>h :leftabove vsplit<cr>
 nnoremap <c-w>j :split<cr>
 nnoremap <c-w>k :leftabove split<cr>
 nnoremap <c-w>l :vsplit<cr>
+
 
 iabbrev ccopy Copyright 2020 George Olson, all rights reserved
 
