@@ -1,0 +1,11 @@
+{
+    "languageserver": {
+        "clangd": {
+            "command": "clangd-9",
+            "enable": true,
+            "rootPatterns": ["compile_commands.json", "compile_flags.json"],
+            "filetypes": ["c", "cpp"],
+            "args": ["-background-index"]
+        }
+    }
+}
